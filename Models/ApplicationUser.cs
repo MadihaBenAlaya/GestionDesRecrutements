@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
@@ -47,6 +48,14 @@ namespace AppRecrutement.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date de début disponible")]
         public string Date_début_dispo { get; set; }
+
+        public float Score { get; set; }
+
+        public virtual ICollection<Candidature> Candidatures { get; set; }
+
+        public virtual Departement Departements { get; set; }
+
+        public virtual ICollection<Language> Languages { get; set; }
 
     }
 }

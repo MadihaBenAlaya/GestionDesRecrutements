@@ -45,6 +45,11 @@ namespace AppRecrutement
             services.AddEntityFrameworkNpgsql().AddDbContext<AuthenticationContext>(opt =>
                 opt.UseNpgsql(Configuration.GetConnectionString("IdentityConnection")));
 
+            services.AddEntityFrameworkNpgsql().AddDbContext<AppContext>(opt =>
+                opt.UseNpgsql(Configuration.GetConnectionString("IdentityConnection")));
+
+            
+
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AuthenticationContext>();
@@ -106,14 +111,14 @@ namespace AppRecrutement
             );
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
 
             app.UseRouting();
 
             app.UseAuthorization();
 
             
-            app.UseAuthentication();
-
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

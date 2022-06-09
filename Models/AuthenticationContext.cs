@@ -10,5 +10,8 @@ namespace AppRecrutement.Models
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        
+
+
     }
 }

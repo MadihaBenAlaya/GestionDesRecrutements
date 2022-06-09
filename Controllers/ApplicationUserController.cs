@@ -34,7 +34,7 @@ namespace AppRecrutement.Controllers
         //POST : /api/ApplicationUser/Register
         public async Task<Object> PostApplicationUser(ApplicationUserModel model)
         {
-           // model.Role = "Recruteur";
+            model.Role = "Candidat";
             var applicationUser = new ApplicationUser()
             {
                 UserName = model.UserName,
@@ -46,7 +46,7 @@ namespace AppRecrutement.Controllers
             try
             {
                 var result = await _userManager.CreateAsync(applicationUser, model.Password);
-               // await _userManager.AddToRoleAsync(applicationUser, model.Role);
+                await _userManager.AddToRoleAsync(applicationUser, model.Role);
                 return Ok(result);
             }
             catch (Exception ex)
