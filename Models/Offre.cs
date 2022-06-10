@@ -13,7 +13,7 @@ namespace AppRecrutement.Models
         }
 
         [Key]
-        public Guid OffreID { get; }
+        public Guid OffreID { get; set; }
 
         [Required]
         public string NomOffre { get; set; }

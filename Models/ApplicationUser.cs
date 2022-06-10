@@ -55,7 +55,7 @@ namespace AppRecrutement.Models
 
         public virtual Departement Departements { get; set; }
 
-        public virtual ICollection<Language> Languages { get; set; }
+        public virtual ICollection<NiveauMaitrise> NiveauMaitrises { get; set; }
 
     }
 }

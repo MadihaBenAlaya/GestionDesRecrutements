@@ -12,7 +12,7 @@ namespace AppRecrutement.Models
         }
 
         [Key]
-        public Guid EntretienID { get; }
+        public Guid EntretienID { get; set; }
 
         [Display(Name = "Equipe de recrutement")]
         public string Equipe_recrutement { get; set; }

@@ -13,7 +13,7 @@ namespace AppRecrutement.Models
         }
 
         [Key]
-        public Guid DepartementID { get; }
+        public Guid DepartementID { get; set; }
         public string Code { get; set; }
         public string Libelle { get; set; }
 

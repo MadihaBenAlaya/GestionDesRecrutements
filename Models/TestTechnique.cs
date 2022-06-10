@@ -12,7 +12,7 @@ namespace AppRecrutement.Models
         }
 
         [Key]
-        public Guid TestID { get; }
+        public Guid TestID { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Adresse e-mail de distinataire")]

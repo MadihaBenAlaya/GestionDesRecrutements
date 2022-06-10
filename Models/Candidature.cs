@@ -13,7 +13,7 @@ namespace AppRecrutement.Models
             }
 
             [Key]
-            public Guid CandidatureID { get; }
+            public Guid CandidatureID { get; set; }
 
 
             [DataType(DataType.Date)]

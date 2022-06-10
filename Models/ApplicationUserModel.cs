@@ -1,4 +1,7 @@
-﻿namespace AppRecrutement.Models
+﻿using AppRecrutement.MaitriseConfiguartion;
+using Microsoft.EntityFrameworkCore;
+
+namespace AppRecrutement.Models
 {
     public class ApplicationUserModel
     {
@@ -8,6 +11,6 @@
         public string FullName { get; set; }
         public string Role { get; set; }
 
-
+        
     }
 }

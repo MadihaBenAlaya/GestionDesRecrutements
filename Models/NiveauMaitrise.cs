@@ -5,7 +5,7 @@ namespace AppRecrutement.Models
 {
     public class NiveauMaitrise
     {
-        public Guid UserFk { get; set; }
+        public string UserFk { get; set; }
 
         public Guid LangageFk { get; set; }
 

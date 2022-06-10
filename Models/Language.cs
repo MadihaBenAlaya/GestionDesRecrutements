@@ -16,6 +16,6 @@ namespace AppRecrutement.Models
         public Guid LanguageID { get; set; }
         public string Code { get; set; }
         public string Libelle { get; set; }
-        public virtual ICollection<ApplicationUser> Users { get; set; }
+        public virtual ICollection<NiveauMaitrise> NiveauMaitrises { get; set; }
     }
 }
