@@ -36,5 +36,45 @@ namespace AppRecrutement.Controllers
 
             };
         }
+
+        [HttpGet]
+        [Authorize(Roles = "ADMIN")]
+        [Route("ForAdmin")]
+        public string GetForAdmin()
+        {
+            return "Web method for Admin";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "RECRUTEUR")]
+        [Route("ForRecruteur")]
+        public string GetForRecruteur()
+        {
+            return "Web method for Recruteur";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "ADMIN,RECRUTEUR")]
+        [Route("ForAdminOrRecruteur")]
+        public string GetForAdminOrRecruteur()
+        {
+            return "Web method for Admin or Recruteur";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "CANDIDAT")]
+        [Route("ForCandidat")]
+        public string GetForCandidat()
+        {
+            return "Web method for Candidat";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "PERSONNEL")]
+        [Route("ForPersonnel")]
+        public string GetForPersonnel()
+        {
+            return "Web method for Personnel";
+        }
     }
 }

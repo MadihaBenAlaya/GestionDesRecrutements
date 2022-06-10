@@ -1,5 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AppRecrutement.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,36 +14,97 @@ namespace AppRecrutement.Controllers
     [ApiController]
     public class CandidatureController : ControllerBase
     {
+        private readonly ProjectContext _context;
+
+        public CandidatureController(ProjectContext context)
+        {
+            _context = context;
+        }
+
+
         // GET: api/<CandidatureController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<IEnumerable<Candidature>>> GetAllCandidatures()
         {
-            return new string[] { "value1", "value2" };
+            return await _context.Candidatures.ToListAsync();
+          
         }
+
 
         // GET api/<CandidatureController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Candidature> GetCandidature(Guid id)
         {
-            return "value";
+
+
+            return await _context.Candidatures.FindAsync(id);
+
         }
 
+        //Candidat
         // POST api/<CandidatureController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task AddCandidature(Candidature candidature)
         {
+
+
+            await _context.Candidatures.AddAsync(candidature);
+            await _context.SaveChangesAsync();
+
         }
 
+        // Modification Etat 
+        // Recruteur
         // PUT api/<CandidatureController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> PutCandidature(Guid id, Candidature candidature)
         {
+            if (id != candidature.CandidatureID)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(candidature).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CandidatureExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
+        // Suppression logique
+        // Candidat
         // DELETE api/<CandidatureController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task AnnulerCandidature(Guid id)
         {
+
+
+            var candidature = await _context.Candidatures.FindAsync(id);
+            if (candidature == null)
+                return;
+
+            _context.Candidatures.Remove(candidature);
+            await _context.SaveChangesAsync();
+
+        }
+
+        private bool CandidatureExists(Guid id)
+        {
+            return _context.Candidatures.Any(e => e.CandidatureID == id);
         }
     }
 }

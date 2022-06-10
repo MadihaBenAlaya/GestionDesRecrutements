@@ -34,7 +34,7 @@ namespace AppRecrutement.Controllers
         //POST : /api/ApplicationUser/Register
         public async Task<Object> PostApplicationUser(ApplicationUserModel model)
         {
-            model.Role = "Candidat";
+            model.Role = "RECRUTEUR";
             var applicationUser = new ApplicationUser()
             {
                 UserName = model.UserName,
@@ -65,7 +65,7 @@ namespace AppRecrutement.Controllers
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 //Get role assigned to the user
-                //var role = await _userManager.GetRolesAsync(user);
+                var role = await _userManager.GetRolesAsync(user);
                 IdentityOptions _options = new IdentityOptions();
 
                 var tokenDescriptor = new SecurityTokenDescriptor
@@ -73,7 +73,7 @@ namespace AppRecrutement.Controllers
                     Subject = new ClaimsIdentity(new Claim[]
                     {
                         new Claim("UserID",user.Id.ToString()),
-                       // new Claim(_options.ClaimsIdentity.RoleClaimType,role.FirstOrDefault())
+                        new Claim(_options.ClaimsIdentity.RoleClaimType,role.FirstOrDefault())
                     }),
                     Expires = DateTime.UtcNow.AddMinutes(10),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
