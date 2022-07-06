@@ -7,18 +7,18 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace AppRecrutement.Migrations
+namespace AppRecrutement.Migrations.Project
 {
     [DbContext(typeof(ProjectContext))]
-    [Migration("20220610154948_initial0001")]
-    partial class initial0001
+    [Migration("20220705144432_initial03")]
+    partial class initial03
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.14")
+                .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("AppRecrutement.Models.ApplicationUser", b =>
@@ -32,16 +32,7 @@ namespace AppRecrutement.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("text");
 
-                    b.Property<string>("Date_début_dispo")
-                        .HasColumnType("text");
-
                     b.Property<string>("Date_naissance")
-                        .HasColumnType("text");
-
-                    b.Property<Guid?>("DepartementsDepartementID")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Ecole")
                         .HasColumnType("text");
 
                     b.Property<string>("Email")
@@ -59,7 +50,7 @@ namespace AppRecrutement.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("Nb_années_expérience")
+                    b.Property<int>("Nb_annees_experience")
                         .HasColumnType("integer");
 
                     b.Property<string>("Niveau_etude")
@@ -83,16 +74,10 @@ namespace AppRecrutement.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
-                    b.Property<float>("Score")
-                        .HasColumnType("real");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
-                    b.Property<string>("Situation_emploi_actuelle")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Spécialité")
+                    b.Property<string>("Specialite")
                         .HasColumnType("text");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -105,8 +90,6 @@ namespace AppRecrutement.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DepartementsDepartementID");
 
                     b.ToTable("ApplicationUser");
                 });
@@ -133,16 +116,8 @@ namespace AppRecrutement.Migrations
                     b.Property<int>("Etat")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Letrre_motivation")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Motivation_poste")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Questions")
-                        .HasColumnType("text");
+                    b.Property<float>("Score")
+                        .HasColumnType("real");
 
                     b.HasKey("CandidatureID");
 
@@ -179,8 +154,12 @@ namespace AppRecrutement.Migrations
                     b.Property<int>("Date")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Durée")
-                        .HasColumnType("integer");
+                    b.Property<string>("Destination")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Duree")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Equipe_recrutement")
                         .HasColumnType("text");
@@ -192,49 +171,17 @@ namespace AppRecrutement.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("RendezVousOffreID")
+                    b.Property<Guid?>("RendezVousCandidatureID")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("Type_entretien")
+                        .HasColumnType("text");
 
                     b.HasKey("EntretienID");
 
-                    b.HasIndex("RendezVousOffreID");
+                    b.HasIndex("RendezVousCandidatureID");
 
                     b.ToTable("EntretienRHs");
-                });
-
-            modelBuilder.Entity("AppRecrutement.Models.Language", b =>
-                {
-                    b.Property<Guid>("LanguageID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Libelle")
-                        .HasColumnType("text");
-
-                    b.HasKey("LanguageID");
-
-                    b.ToTable("Languages");
-                });
-
-            modelBuilder.Entity("AppRecrutement.Models.NiveauMaitrise", b =>
-                {
-                    b.Property<string>("UserFk")
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("LangageFk")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Mention")
-                        .HasColumnType("text");
-
-                    b.HasKey("UserFk", "LangageFk");
-
-                    b.HasIndex("LangageFk");
-
-                    b.ToTable("NiveauMaitrises");
                 });
 
             modelBuilder.Entity("AppRecrutement.Models.Offre", b =>
@@ -243,30 +190,21 @@ namespace AppRecrutement.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Activités_principales")
+                    b.Property<string>("Competences_techniques")
                         .HasColumnType("text");
 
-                    b.Property<string>("Compétences_techniques")
+                    b.Property<string>("Date_debut")
                         .HasColumnType("text");
 
-                    b.Property<string>("Date_début")
-                        .HasColumnType("text");
+                    b.Property<Guid?>("DepartementsDepartementID")
+                        .HasColumnType("uuid");
 
-                    b.Property<string>("Diplome_démandé")
+                    b.Property<string>("Diplome_demande")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Département")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Experience_démandée")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Niveau_démandé")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("Experience_demandee")
+                        .HasColumnType("integer");
 
                     b.Property<string>("NomOffre")
                         .IsRequired()
@@ -276,10 +214,10 @@ namespace AppRecrutement.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Qualités_interpersonnelles")
+                    b.Property<string>("Qualites_interpersonnelles")
                         .HasColumnType("text");
 
-                    b.Property<string>("Région")
+                    b.Property<string>("Region")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -291,6 +229,8 @@ namespace AppRecrutement.Migrations
 
                     b.HasKey("OffreID");
 
+                    b.HasIndex("DepartementsDepartementID");
+
                     b.ToTable("Offres");
                 });
 
@@ -300,16 +240,17 @@ namespace AppRecrutement.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Date_dépot")
+                    b.Property<string>("Date_depot")
                         .HasColumnType("text");
 
                     b.Property<string>("Destination")
                         .HasColumnType("text");
 
-                    b.Property<int>("Durée")
-                        .HasColumnType("integer");
+                    b.Property<string>("Duree")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<Guid?>("OffreTestOffreID")
+                    b.Property<Guid>("TestCandidatureID")
                         .HasColumnType("uuid");
 
                     b.Property<string>("lien_test")
@@ -318,18 +259,9 @@ namespace AppRecrutement.Migrations
 
                     b.HasKey("TestID");
 
-                    b.HasIndex("OffreTestOffreID");
+                    b.HasIndex("TestCandidatureID");
 
                     b.ToTable("TestTechniques");
-                });
-
-            modelBuilder.Entity("AppRecrutement.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("AppRecrutement.Models.Departement", "Departements")
-                        .WithMany("Users")
-                        .HasForeignKey("DepartementsDepartementID");
-
-                    b.Navigation("Departements");
                 });
 
             modelBuilder.Entity("AppRecrutement.Models.Candidature", b =>
@@ -349,65 +281,53 @@ namespace AppRecrutement.Migrations
 
             modelBuilder.Entity("AppRecrutement.Models.EntretienRH", b =>
                 {
-                    b.HasOne("AppRecrutement.Models.Offre", "RendezVous")
+                    b.HasOne("AppRecrutement.Models.Candidature", "RendezVous")
                         .WithMany("EntretienRHs")
-                        .HasForeignKey("RendezVousOffreID");
+                        .HasForeignKey("RendezVousCandidatureID");
 
                     b.Navigation("RendezVous");
                 });
 
-            modelBuilder.Entity("AppRecrutement.Models.NiveauMaitrise", b =>
+            modelBuilder.Entity("AppRecrutement.Models.Offre", b =>
                 {
-                    b.HasOne("AppRecrutement.Models.Language", "Language")
-                        .WithMany("NiveauMaitrises")
-                        .HasForeignKey("LangageFk")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("AppRecrutement.Models.Departement", "Departements")
+                        .WithMany("Offres")
+                        .HasForeignKey("DepartementsDepartementID");
 
-                    b.HasOne("AppRecrutement.Models.ApplicationUser", "User")
-                        .WithMany("NiveauMaitrises")
-                        .HasForeignKey("UserFk")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Language");
-
-                    b.Navigation("User");
+                    b.Navigation("Departements");
                 });
 
             modelBuilder.Entity("AppRecrutement.Models.TestTechnique", b =>
                 {
-                    b.HasOne("AppRecrutement.Models.Offre", "OffreTest")
+                    b.HasOne("AppRecrutement.Models.Candidature", "Test")
                         .WithMany("Tests")
-                        .HasForeignKey("OffreTestOffreID");
+                        .HasForeignKey("TestCandidatureID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("OffreTest");
+                    b.Navigation("Test");
                 });
 
             modelBuilder.Entity("AppRecrutement.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Candidatures");
+                });
 
-                    b.Navigation("NiveauMaitrises");
+            modelBuilder.Entity("AppRecrutement.Models.Candidature", b =>
+                {
+                    b.Navigation("EntretienRHs");
+
+                    b.Navigation("Tests");
                 });
 
             modelBuilder.Entity("AppRecrutement.Models.Departement", b =>
                 {
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("AppRecrutement.Models.Language", b =>
-                {
-                    b.Navigation("NiveauMaitrises");
+                    b.Navigation("Offres");
                 });
 
             modelBuilder.Entity("AppRecrutement.Models.Offre", b =>
                 {
                     b.Navigation("CandidaturesOffre");
-
-                    b.Navigation("EntretienRHs");
-
-                    b.Navigation("Tests");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Madiha\\Desktop\\PFE\\Recrutement\\Recrutement_back\\AppRecrutement\\AppRecrutement.csproj": {}
+    "C:\\Users\\madih\\GestionDesRecrutements\\AppRecrutement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Madiha\\Desktop\\PFE\\Recrutement\\Recrutement_back\\AppRecrutement\\AppRecrutement.csproj": {
+    "C:\\Users\\madih\\GestionDesRecrutements\\AppRecrutement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Madiha\\Desktop\\PFE\\Recrutement\\Recrutement_back\\AppRecrutement\\AppRecrutement.csproj",
+        "projectUniqueName": "C:\\Users\\madih\\GestionDesRecrutements\\AppRecrutement.csproj",
         "projectName": "AppRecrutement",
-        "projectPath": "C:\\Users\\Madiha\\Desktop\\PFE\\Recrutement\\Recrutement_back\\AppRecrutement\\AppRecrutement.csproj",
-        "packagesPath": "C:\\Users\\Madiha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Madiha\\Desktop\\PFE\\Recrutement\\Recrutement_back\\AppRecrutement\\obj\\",
+        "projectPath": "C:\\Users\\madih\\GestionDesRecrutements\\AppRecrutement.csproj",
+        "packagesPath": "C:\\Users\\madih\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\madih\\GestionDesRecrutements\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Madiha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\madih\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -62,6 +62,10 @@
               "target": "Package",
               "version": "[5.0.12, )"
             },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -99,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300-preview.22154.4\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

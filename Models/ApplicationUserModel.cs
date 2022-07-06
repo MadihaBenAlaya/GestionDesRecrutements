@@ -1,5 +1,4 @@
-﻿using AppRecrutement.MaitriseConfiguartion;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace AppRecrutement.Models
 {

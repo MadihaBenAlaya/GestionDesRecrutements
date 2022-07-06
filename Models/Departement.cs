@@ -17,6 +17,6 @@ namespace AppRecrutement.Models
         public string Code { get; set; }
         public string Libelle { get; set; }
 
-        public virtual ICollection<ApplicationUser> Users { get; set; }
+        public virtual ICollection<Offre> Offres { get; set; }
     }
 }

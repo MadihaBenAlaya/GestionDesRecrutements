@@ -1,5 +1,4 @@
-﻿using AppRecrutement.MaitriseConfiguartion;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AppRecrutement.Models
@@ -11,10 +10,6 @@ namespace AppRecrutement.Models
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-
-        
-
-
 
     }
 }

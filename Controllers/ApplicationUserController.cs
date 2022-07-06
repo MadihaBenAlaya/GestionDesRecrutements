@@ -30,17 +30,75 @@ namespace AppRecrutement.Controllers
         }
 
         [HttpPost]
-        [Route("Register")]
-        //POST : /api/ApplicationUser/Register
-        public async Task<Object> PostApplicationUser(ApplicationUserModel model)
+        [Route("RegisterRecruteur")]
+        //POST : /api/ApplicationUser/RegisterRecruteur
+        public async Task<Object> PostApplicationUserRecruteur(ApplicationUserModel model)
         {
+            
             model.Role = "RECRUTEUR";
+           
             var applicationUser = new ApplicationUser()
             {
                 UserName = model.UserName,
                 Email = model.Email,
                 FullName = model.FullName
                 
+            };
+
+            try
+            {
+                var result = await _userManager.CreateAsync(applicationUser, model.Password);
+                await _userManager.AddToRoleAsync(applicationUser, model.Role);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        [HttpPost]
+        [Route("RegisterAdmin")]
+        //POST : /api/ApplicationUser/RegisterAdmin
+        public async Task<Object> PostApplicationUserAdmin(ApplicationUserModel model)
+        {
+            model.Role = "ADMINISTRATEUR";
+            
+            var applicationUser = new ApplicationUser()
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                FullName = model.FullName
+
+            };
+
+            try
+            {
+                var result = await _userManager.CreateAsync(applicationUser, model.Password);
+                await _userManager.AddToRoleAsync(applicationUser, model.Role);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        [HttpPost]
+        [Route("RegisterCandidat")]
+        //POST : /api/ApplicationUser/RegisterCandidat
+        public async Task<Object> PostApplicationUserCandidat(ApplicationUserModel model)
+        {
+
+            model.Role = "CANDIDAT";
+
+            var applicationUser = new ApplicationUser()
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                FullName = model.FullName
+
             };
 
             try

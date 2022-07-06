@@ -22,17 +22,17 @@ namespace AppRecrutement.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date de dépot")]
-        public string Date_dépot { get; set; }
+        public string Date_depot { get; set; }
 
         [Required]
         [DataType(DataType.Duration)]
-        public int Durée { get; set; }
+        public string Duree { get; set; }
 
         [Required]
         [DataType(DataType.Url)]
         [Display(Name = "lien de test")]
         public string lien_test { get; set; }
 
-        public virtual Offre OffreTest { get; set; }
+        public virtual Candidature Test { get; set; }
     }
 }
