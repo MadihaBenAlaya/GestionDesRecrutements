@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AppRecrutement.Migrations
 {
-    public partial class initial03 : Migration
+    public partial class initial01 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -189,6 +189,7 @@ namespace AppRecrutement.Migrations
                     Experience_demandee = table.Column<int>(type: "integer", nullable: false),
                     salaire = table.Column<long>(type: "bigint", nullable: false),
                     Type_contrat = table.Column<string>(type: "text", nullable: true),
+                    departement = table.Column<string>(type: "text", nullable: true),
                     DepartementsDepartementID = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
@@ -208,11 +209,11 @@ namespace AppRecrutement.Migrations
                 {
                     CandidatureID = table.Column<Guid>(type: "uuid", nullable: false),
                     Date_postulation = table.Column<string>(type: "text", nullable: true),
-                    Etat = table.Column<int>(type: "integer", nullable: false),
+                    Etat = table.Column<string>(type: "text", nullable: true),
                     Curriculum_Vitae = table.Column<string>(type: "text", nullable: false),
                     Score = table.Column<float>(type: "real", nullable: false),
-                    CandidatId = table.Column<string>(type: "text", nullable: true),
-                    CorrespondanceOffreID = table.Column<Guid>(type: "uuid", nullable: true)
+                    OffreFK = table.Column<Guid>(type: "uuid", nullable: false),
+                    CandidatId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -224,11 +225,11 @@ namespace AppRecrutement.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Candidature_Offre_CorrespondanceOffreID",
-                        column: x => x.CorrespondanceOffreID,
+                        name: "FK_Candidature_Offre_OffreFK",
+                        column: x => x.OffreFK,
                         principalTable: "Offre",
                         principalColumn: "OffreID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -241,7 +242,7 @@ namespace AppRecrutement.Migrations
                     Type_entretien = table.Column<string>(type: "text", nullable: true),
                     Localisation = table.Column<string>(type: "text", nullable: false),
                     Duree = table.Column<string>(type: "text", nullable: false),
-                    Date = table.Column<int>(type: "integer", nullable: false),
+                    Date = table.Column<string>(type: "text", nullable: false),
                     Heure = table.Column<int>(type: "integer", nullable: false),
                     RendezVousCandidatureID = table.Column<Guid>(type: "uuid", nullable: true)
                 },
@@ -321,9 +322,9 @@ namespace AppRecrutement.Migrations
                 column: "CandidatId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Candidature_CorrespondanceOffreID",
+                name: "IX_Candidature_OffreFK",
                 table: "Candidature",
-                column: "CorrespondanceOffreID");
+                column: "OffreFK");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EntretienRH_RendezVousCandidatureID",

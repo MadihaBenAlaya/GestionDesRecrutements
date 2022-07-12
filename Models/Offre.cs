@@ -55,6 +55,9 @@ namespace AppRecrutement.Models
         [Display(Name = "Type de contrat")]
         public string Type_contrat { get; set; }
 
+        public string departement { get; set; }
+
+        
 
         public virtual Departement Departements { get; set; }
 

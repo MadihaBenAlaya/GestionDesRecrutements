@@ -26,7 +26,8 @@ namespace AppRecrutement.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Candidature>>> GetAllCandidatures()
         {
-            return await _context.Candidatures.ToListAsync();
+            return await _context.Candidatures.Include(c=> c.Correspondance)
+                .ToListAsync();
           
         }
 

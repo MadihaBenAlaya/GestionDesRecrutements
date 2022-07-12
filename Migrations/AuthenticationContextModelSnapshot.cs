@@ -28,9 +28,6 @@ namespace AppRecrutement.Migrations
                     b.Property<string>("CandidatId")
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("CorrespondanceOffreID")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Curriculum_Vitae")
                         .IsRequired()
                         .HasColumnType("text");
@@ -38,8 +35,11 @@ namespace AppRecrutement.Migrations
                     b.Property<string>("Date_postulation")
                         .HasColumnType("text");
 
-                    b.Property<int>("Etat")
-                        .HasColumnType("integer");
+                    b.Property<string>("Etat")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("OffreFK")
+                        .HasColumnType("uuid");
 
                     b.Property<float>("Score")
                         .HasColumnType("real");
@@ -48,7 +48,7 @@ namespace AppRecrutement.Migrations
 
                     b.HasIndex("CandidatId");
 
-                    b.HasIndex("CorrespondanceOffreID");
+                    b.HasIndex("OffreFK");
 
                     b.ToTable("Candidature");
                 });
@@ -76,8 +76,9 @@ namespace AppRecrutement.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<int>("Date")
-                        .HasColumnType("integer");
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Destination")
                         .HasColumnType("text");
@@ -147,6 +148,9 @@ namespace AppRecrutement.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Type_contrat")
+                        .HasColumnType("text");
+
+                    b.Property<string>("departement")
                         .HasColumnType("text");
 
                     b.Property<long>("salaire")
@@ -429,7 +433,9 @@ namespace AppRecrutement.Migrations
 
                     b.HasOne("AppRecrutement.Models.Offre", "Correspondance")
                         .WithMany("CandidaturesOffre")
-                        .HasForeignKey("CorrespondanceOffreID");
+                        .HasForeignKey("OffreFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Candidat");
 

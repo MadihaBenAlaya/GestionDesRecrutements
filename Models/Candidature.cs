@@ -31,9 +31,11 @@ namespace AppRecrutement.Models
             public string Curriculum_Vitae { get; set; }
 
             public float Score { get; set; }
+            public Guid OffreFK { get; set; }
 
             public virtual ApplicationUser Candidat { get; set; }
 
+            [ForeignKey("OffreFK")]
             public virtual Offre Correspondance { get; set; }
             public virtual ICollection<TestTechnique> Tests { get; set; }
             public virtual ICollection<EntretienRH> EntretienRHs { get; set; }

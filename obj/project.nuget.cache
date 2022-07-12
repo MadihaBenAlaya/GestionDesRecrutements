@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sMYP3GNIplwJeRTf+WRwjee3d9kG3v2On4syS8KPtTiZ2vDri2qrsqX0n2/y+CO3mts9YilGup6g8mCPi7B/eA==",
+  "dgSpecHash": "t3pE6xy0qrvN5HpRxvisbKKwyuHvI0eVV7ECrsxymsJ8jQ/TndhBQyTDI72TYj/TanbDs5NWcr9j64ZRdk61gQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\madih\\GestionDesRecrutements\\AppRecrutement.csproj",
+  "projectFilePath": "D:\\Recrutement\\GestionDesRecrutements\\AppRecrutement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\madih\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\madih\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
