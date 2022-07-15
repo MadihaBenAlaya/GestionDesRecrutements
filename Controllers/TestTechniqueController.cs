@@ -14,9 +14,9 @@ namespace AppRecrutement.Controllers
     [ApiController]
     public class TestTechniqueController : ControllerBase
     {
-        private readonly ProjectContext _context;
+        private readonly AuthenticationContext _context;
 
-        public TestTechniqueController(ProjectContext context)
+        public TestTechniqueController(AuthenticationContext context)
         {
             _context = context;
         }

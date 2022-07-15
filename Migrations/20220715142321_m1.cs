@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AppRecrutement.Migrations
 {
-    public partial class initial01 : Migration
+    public partial class m1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,7 +56,7 @@ namespace AppRecrutement.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Departement",
+                name: "Departements",
                 columns: table => new
                 {
                     DepartementID = table.Column<Guid>(type: "uuid", nullable: false),
@@ -65,7 +65,7 @@ namespace AppRecrutement.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Departement", x => x.DepartementID);
+                    table.PrimaryKey("PK_Departements", x => x.DepartementID);
                 });
 
             migrationBuilder.CreateTable(
@@ -175,7 +175,7 @@ namespace AppRecrutement.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Offre",
+                name: "Offres",
                 columns: table => new
                 {
                     OffreID = table.Column<Guid>(type: "uuid", nullable: false),
@@ -194,17 +194,17 @@ namespace AppRecrutement.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Offre", x => x.OffreID);
+                    table.PrimaryKey("PK_Offres", x => x.OffreID);
                     table.ForeignKey(
-                        name: "FK_Offre_Departement_DepartementsDepartementID",
+                        name: "FK_Offres_Departements_DepartementsDepartementID",
                         column: x => x.DepartementsDepartementID,
-                        principalTable: "Departement",
+                        principalTable: "Departements",
                         principalColumn: "DepartementID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Candidature",
+                name: "Candidatures",
                 columns: table => new
                 {
                     CandidatureID = table.Column<Guid>(type: "uuid", nullable: false),
@@ -213,27 +213,27 @@ namespace AppRecrutement.Migrations
                     Curriculum_Vitae = table.Column<string>(type: "text", nullable: false),
                     Score = table.Column<float>(type: "real", nullable: false),
                     OffreFK = table.Column<Guid>(type: "uuid", nullable: false),
-                    CandidatId = table.Column<string>(type: "text", nullable: true)
+                    CandidatFK = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Candidature", x => x.CandidatureID);
+                    table.PrimaryKey("PK_Candidatures", x => x.CandidatureID);
                     table.ForeignKey(
-                        name: "FK_Candidature_AspNetUsers_CandidatId",
-                        column: x => x.CandidatId,
+                        name: "FK_Candidatures_AspNetUsers_CandidatFK",
+                        column: x => x.CandidatFK,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Candidature_Offre_OffreFK",
+                        name: "FK_Candidatures_Offres_OffreFK",
                         column: x => x.OffreFK,
-                        principalTable: "Offre",
+                        principalTable: "Offres",
                         principalColumn: "OffreID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EntretienRH",
+                name: "EntretienRHs",
                 columns: table => new
                 {
                     EntretienID = table.Column<Guid>(type: "uuid", nullable: false),
@@ -248,17 +248,17 @@ namespace AppRecrutement.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EntretienRH", x => x.EntretienID);
+                    table.PrimaryKey("PK_EntretienRHs", x => x.EntretienID);
                     table.ForeignKey(
-                        name: "FK_EntretienRH_Candidature_RendezVousCandidatureID",
+                        name: "FK_EntretienRHs_Candidatures_RendezVousCandidatureID",
                         column: x => x.RendezVousCandidatureID,
-                        principalTable: "Candidature",
+                        principalTable: "Candidatures",
                         principalColumn: "CandidatureID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TestTechnique",
+                name: "TestTechniques",
                 columns: table => new
                 {
                     TestID = table.Column<Guid>(type: "uuid", nullable: false),
@@ -270,11 +270,11 @@ namespace AppRecrutement.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TestTechnique", x => x.TestID);
+                    table.PrimaryKey("PK_TestTechniques", x => x.TestID);
                     table.ForeignKey(
-                        name: "FK_TestTechnique_Candidature_TestCandidatureID",
+                        name: "FK_TestTechniques_Candidatures_TestCandidatureID",
                         column: x => x.TestCandidatureID,
-                        principalTable: "Candidature",
+                        principalTable: "Candidatures",
                         principalColumn: "CandidatureID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -317,28 +317,28 @@ namespace AppRecrutement.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Candidature_CandidatId",
-                table: "Candidature",
-                column: "CandidatId");
+                name: "IX_Candidatures_CandidatFK",
+                table: "Candidatures",
+                column: "CandidatFK");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Candidature_OffreFK",
-                table: "Candidature",
+                name: "IX_Candidatures_OffreFK",
+                table: "Candidatures",
                 column: "OffreFK");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EntretienRH_RendezVousCandidatureID",
-                table: "EntretienRH",
+                name: "IX_EntretienRHs_RendezVousCandidatureID",
+                table: "EntretienRHs",
                 column: "RendezVousCandidatureID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Offre_DepartementsDepartementID",
-                table: "Offre",
+                name: "IX_Offres_DepartementsDepartementID",
+                table: "Offres",
                 column: "DepartementsDepartementID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TestTechnique_TestCandidatureID",
-                table: "TestTechnique",
+                name: "IX_TestTechniques_TestCandidatureID",
+                table: "TestTechniques",
                 column: "TestCandidatureID");
         }
 
@@ -360,25 +360,25 @@ namespace AppRecrutement.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "EntretienRH");
+                name: "EntretienRHs");
 
             migrationBuilder.DropTable(
-                name: "TestTechnique");
+                name: "TestTechniques");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Candidature");
+                name: "Candidatures");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Offre");
+                name: "Offres");
 
             migrationBuilder.DropTable(
-                name: "Departement");
+                name: "Departements");
         }
     }
 }

@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AppRecrutement.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20220712171846_initial01")]
-    partial class initial01
+    [Migration("20220715142321_m1")]
+    partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,7 +27,7 @@ namespace AppRecrutement.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("CandidatId")
+                    b.Property<string>("CandidatFK")
                         .HasColumnType("text");
 
                     b.Property<string>("Curriculum_Vitae")
@@ -48,11 +48,11 @@ namespace AppRecrutement.Migrations
 
                     b.HasKey("CandidatureID");
 
-                    b.HasIndex("CandidatId");
+                    b.HasIndex("CandidatFK");
 
                     b.HasIndex("OffreFK");
 
-                    b.ToTable("Candidature");
+                    b.ToTable("Candidatures");
                 });
 
             modelBuilder.Entity("AppRecrutement.Models.Departement", b =>
@@ -69,7 +69,7 @@ namespace AppRecrutement.Migrations
 
                     b.HasKey("DepartementID");
 
-                    b.ToTable("Departement");
+                    b.ToTable("Departements");
                 });
 
             modelBuilder.Entity("AppRecrutement.Models.EntretienRH", b =>
@@ -109,7 +109,7 @@ namespace AppRecrutement.Migrations
 
                     b.HasIndex("RendezVousCandidatureID");
 
-                    b.ToTable("EntretienRH");
+                    b.ToTable("EntretienRHs");
                 });
 
             modelBuilder.Entity("AppRecrutement.Models.Offre", b =>
@@ -162,7 +162,7 @@ namespace AppRecrutement.Migrations
 
                     b.HasIndex("DepartementsDepartementID");
 
-                    b.ToTable("Offre");
+                    b.ToTable("Offres");
                 });
 
             modelBuilder.Entity("AppRecrutement.Models.TestTechnique", b =>
@@ -192,7 +192,7 @@ namespace AppRecrutement.Migrations
 
                     b.HasIndex("TestCandidatureID");
 
-                    b.ToTable("TestTechnique");
+                    b.ToTable("TestTechniques");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -431,7 +431,7 @@ namespace AppRecrutement.Migrations
                 {
                     b.HasOne("AppRecrutement.Models.ApplicationUser", "Candidat")
                         .WithMany("Candidatures")
-                        .HasForeignKey("CandidatId");
+                        .HasForeignKey("CandidatFK");
 
                     b.HasOne("AppRecrutement.Models.Offre", "Correspondance")
                         .WithMany("CandidaturesOffre")

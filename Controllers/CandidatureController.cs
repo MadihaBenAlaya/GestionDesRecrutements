@@ -14,9 +14,9 @@ namespace AppRecrutement.Controllers
     [ApiController]
     public class CandidatureController : ControllerBase
     {
-        private readonly ProjectContext _context;
+        private readonly AuthenticationContext _context;
 
-        public CandidatureController(ProjectContext context)
+        public CandidatureController(AuthenticationContext context)
         {
             _context = context;
         }
@@ -26,7 +26,9 @@ namespace AppRecrutement.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Candidature>>> GetAllCandidatures()
         {
-            return await _context.Candidatures.Include(c=> c.Correspondance)
+            return await _context.Candidatures
+                .Include(c=> c.Correspondance)
+                .Include(c=> c.Candidat)  
                 .ToListAsync();
           
         }

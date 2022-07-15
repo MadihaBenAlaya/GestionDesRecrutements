@@ -11,5 +11,11 @@ namespace AppRecrutement.Models
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+        public DbSet<Candidature> Candidatures { get; set; }
+        public DbSet<Offre> Offres { get; set; }
+        public DbSet<EntretienRH> EntretienRHs { get; set; }
+        public DbSet<TestTechnique> TestTechniques { get; set; }
+        public DbSet<Departement> Departements { get; set; }
+
     }
 }

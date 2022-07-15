@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 
 namespace AppRecrutement.Models
@@ -36,6 +37,7 @@ namespace AppRecrutement.Models
         [Display(Name = "Date de naissance")]
         public string Date_naissance { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Candidature> Candidatures { get; set; }
 
         

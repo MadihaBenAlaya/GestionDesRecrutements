@@ -14,9 +14,9 @@ namespace AppRecrutement.Controllers
     [ApiController]
     public class OffreController : ControllerBase
     {
-        private readonly ProjectContext _context;
+        private readonly AuthenticationContext _context;
 
-        public OffreController(ProjectContext context)
+        public OffreController(AuthenticationContext context)
         {
             _context = context;
         }

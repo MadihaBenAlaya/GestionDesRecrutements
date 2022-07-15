@@ -49,8 +49,7 @@ namespace AppRecrutement
             services.AddEntityFrameworkNpgsql().AddDbContext<AuthenticationContext>(opt =>
                 opt.UseNpgsql(Configuration.GetConnectionString("IdentityConnection")));
 
-            services.AddEntityFrameworkNpgsql().AddDbContext<ProjectContext>(opt =>
-                opt.UseNpgsql(Configuration.GetConnectionString("IdentityConnection")));
+      
 
             
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using static AppRecrutement.Enums.Enums;
 
 namespace AppRecrutement.Models
@@ -32,10 +33,13 @@ namespace AppRecrutement.Models
 
             public float Score { get; set; }
             public Guid OffreFK { get; set; }
+            public string CandidatFK { get; set; }
+            [ForeignKey("CandidatFK")]
 
             public virtual ApplicationUser Candidat { get; set; }
 
             [ForeignKey("OffreFK")]
+            
             public virtual Offre Correspondance { get; set; }
             public virtual ICollection<TestTechnique> Tests { get; set; }
             public virtual ICollection<EntretienRH> EntretienRHs { get; set; }

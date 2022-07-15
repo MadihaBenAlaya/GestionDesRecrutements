@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace AppRecrutement.Models
 {
@@ -61,6 +62,7 @@ namespace AppRecrutement.Models
 
         public virtual Departement Departements { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Candidature> CandidaturesOffre { get; set; }
 
         

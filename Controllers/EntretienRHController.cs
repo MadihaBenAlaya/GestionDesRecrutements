@@ -14,9 +14,9 @@ namespace AppRecrutement.Controllers
     [ApiController]
     public class EntretienRHController : ControllerBase
     {
-        private readonly ProjectContext _context;
+        private readonly AuthenticationContext _context;
 
-        public EntretienRHController(ProjectContext context)
+        public EntretienRHController(AuthenticationContext context)
         {
             _context = context;
         }
