@@ -32,6 +32,18 @@ namespace AppRecrutement.Controllers
                 .ToListAsync();
           
         }
+        // GET: api/<CandidatureController>
+        [HttpGet]
+        [Route("/test")]
+        public async Task<Object> getCandidatures()
+        {
+       
+            var candidatures = await _context.Candidatures.Select(c => new { c.CandidatureID, c.Curriculum_Vitae }).ToListAsync();   
+
+
+            return candidatures;
+           
+        }
 
 
         // GET api/<CandidatureController>/5

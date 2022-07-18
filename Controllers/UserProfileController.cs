@@ -29,10 +29,11 @@ namespace AppRecrutement.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             return new
             {
+                user.Id,
                 user.FullName,
                 user.Email,
                 user.UserName
-              
+
 
             };
         }

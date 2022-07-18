@@ -19,7 +19,7 @@ namespace AppRecrutement.Models
 
         [Column]
         [Display(Name = "Niveau d'étude")]
-        public string Niveau_etude { get; set; }
+        public string Diplome { get; set; }
 
         
 
